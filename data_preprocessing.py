@@ -67,8 +67,6 @@ df["clean_text"] = df["text"].map(clean)
 df["no_punc"] = df["clean_text"].map(
     lambda x: "".join([w.strip(punctuation) for w in x]))
 
-# combining all text into one string
-corpus = "\n".join([t for t in df[["no_punc", "keyword"]]])
 
 # stemming text: converting word to their base form
 stemmer = PorterStemmer()
@@ -76,5 +74,3 @@ df["stemmed_text"] = df["no_punc"].map(lambda x: stemmer.stem(x))
 
 # save clean data
 df.to_csv("clean_train.csv", index=False)
-
-
