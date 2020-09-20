@@ -14,16 +14,13 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import classification_report
 
 
-def clas(df):
+def clas(X_train, X_test, Y_train, Y_test):
 
     '''
     This function applies classification algorithms from sklearn on train test
     split and return a dataframe with precision and recall value for each
     algorithm.
     '''
-    x = df.drop("target_col", axis = 1)
-    y = df.target_col
-    X_train, X_test, Y_train, Y_test = train_test_split(x,y, train_size = 0.7, random_state = 7)
     lg = LogisticRegression()
     rf = RandomForestClassifier(max_depth=4)
     dt = DecisionTreeClassifier(max_depth=4)
