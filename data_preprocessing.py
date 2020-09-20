@@ -74,3 +74,5 @@ df["stemmed_text"] = df["no_punc"].map(lambda x: stemmer.stem(x))
 
 # save clean data
 df.to_csv("clean_train.csv", index=False)
+
+
