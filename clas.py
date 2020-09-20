@@ -11,6 +11,7 @@ from xgboost import XGBClassifier
 
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
 from sklearn.metrics import classification_report
 
 
@@ -35,10 +36,11 @@ def clas(X_train, X_test, Y_train, Y_test):
         y_pred = model.predict(X_test)
         di[k].append(np.round(precision_score(Y_test, y_pred),2))
         di[k].append(np.round(recall_score(Y_test, y_pred),2))
+        di[k].append(np.round(f1_score(Y_test, y_pred),2))
         print(" ")
         print(k)
         print(" ")
         print(classification_report(Y_test, y_pred))
         print("-"*50)
-    return pd.DataFrame({i:di[i][1:] for i in di.keys()}, index = ["precision","recall"])
+    return pd.DataFrame({i:di[i][1:] for i in di.keys()}, index = ["precision", "recall", "f1-score"])
 
