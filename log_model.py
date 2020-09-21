@@ -38,7 +38,12 @@ y_pred = model.predict(X_test_vec)
 score = round(f1_score(y_pred, y_test), 3)
 print(f"f1-score: {score}")
 
-#saving model 
+# saving model 
 with open("log_model.pkl", "wb") as pickle_out:
     pickle.dump(model, pickle_out)
     print("model saved")
+
+#saving vectorizor
+with open("vectorizor.pkl", "wb") as vec_out:
+    pickle.dump(vec, vec_out)
+    print("vec saved")
