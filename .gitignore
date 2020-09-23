@@ -139,3 +139,9 @@ cython_debug/
 
 #submission file
 submission.csv
+keras_tokenizer
+
+#changed directories
+*.csv
+*.pkl
+*.index
