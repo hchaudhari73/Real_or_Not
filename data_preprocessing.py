@@ -5,7 +5,8 @@ import re  # regex for garbage collection
 from nltk import PorterStemmer  # converting words in base form
 
 # reading training data
-df = pd.read_csv("train.csv")
+TRAIN_PATH = "data/train.csv"
+df = pd.read_csv(TRAIN_PATH)
 
 # cleaning data
 drop_col = ["location", "id"]
@@ -73,6 +74,6 @@ stemmer = PorterStemmer()
 df["stemmed_text"] = df["no_punc"].map(lambda x: stemmer.stem(x))
 
 # save clean data
-df.to_csv("clean_train.csv", index=False)
+df.to_csv("data/clean_train.csv", index=False)
 
 
