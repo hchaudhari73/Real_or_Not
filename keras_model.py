@@ -6,6 +6,10 @@ from tensorflow import keras
 from sklearn.metrics import f1_score
 import pickle
 
+TRAIN_PATH = "data/clean_train.csv"
+MODEL_PATH = "models/embedding_model"
+VECTORIZOR_PATH = "vectorizors/keras_tokenizer.pkl"
+
 # model variables
 vocab_size = 2000
 oov_token = "<OOV>"
@@ -16,7 +20,7 @@ embedding = 32
 EPOCH = 30
 
 # read data
-df = pd.read_csv("clean_train.csv")
+df = pd.read_csv(TRAIN_PATH)
 
 # training size
 TRAIN_SIZE = int(0.8*len(df))
@@ -73,8 +77,8 @@ score = f1_score(y_pred, y_test)
 print(f"f1-score = {np.round(score, 3)}")
 
 #saving model
-model.save("embedding_model")
+model.save(MODEL_PATH)
 
 #saving tokenizer
-with open("keras_tokenizer.pkl", "wb") as token_out:
+with open(VECTORIZOR_PATH, "wb") as token_out:
     pickle.dump(tokenizer, token_out)
