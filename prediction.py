@@ -1,16 +1,20 @@
 import pandas as pd 
 import pickle
 
+TEST_PATH = "data/test.csv"
+MODEL_PATH = "models/log_model.pkl"
+VECTORIZOR_PATH = "vectorizors/vectorizor.pkl"
+
 #loading trained model
-pickle_out = open("log_model.pkl", "rb")
+pickle_out = open(MODEL_PATH, "rb")
 MODEL = pickle.load(pickle_out)
 
 #loading vectorizor
-vec_out = open("vectorizor.pkl", "rb")
+vec_out = open(VECTORIZOR_PATH, "rb")
 VEC = pickle.load(vec_out)
 
 #reading test data
-test = pd.read_csv("test.csv")
+test = pd.read_csv(TEST_PATH)
 
 #modifying test data as per trained data
 X_test = test[["keyword", "text"]]
@@ -24,5 +28,5 @@ test["target"] = MODEL.predict(X_test_vec)
 
 submission = test[["id", "target"]]
 
-submission.to_csv("submission.csv", index=False)
+submission.to_csv("submissions/submission.csv", index=False)
 
