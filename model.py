@@ -3,8 +3,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer  # strings to numeri
 # from sklearn.model_selection import train_test_split  # train-test split
 from clas import clas  # classification models
 
+TRAIN_PATH = "data/clean_train.csv"
 
-df = pd.read_csv("clean_train.csv")
+df = pd.read_csv(TRAIN_PATH)
 
 TRAIN_SIZE = int(0.8*len(df))
 
