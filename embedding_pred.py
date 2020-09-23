@@ -5,20 +5,25 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.text import Tokenizer
 import pickle
 
+TEST_PATH = "test.csv"
+MODEL_PATH = "embedding_model/"
+VECTORIZOR_PATH = "vectorizors/keras_tokenizer.pkl"
+SUBMISSION_PATH = "submissions/embedding_csv"
+
 # model variables
 max_len = 100
 padding = "post"
 trunc = "post"
 
 # loading tokenizer
-token_in = open("keras_tokenizer.pkl", "rb")
+token_in = open(VECTORIZOR_PATH, "rb")
 tokenizer = pickle.load(token_in)
 
 #load model
-model = keras.models.load_model("embedding_model/")
+model = keras.models.load_model(MODEL_PATH)
 
 # loading test data
-test = pd.read_csv("test.csv")
+test = pd.read_csv(TEST_PATH)
 X_test = test[["keyword", "text"]]
 
 # creating corpus for vectorization
@@ -37,4 +42,4 @@ test["target"] = test["target"].map(lambda x: round(x))
 submission = test[["id", "target"]]
 
 #saving submission
-submission.to_csv("embedding_csv", index=False)
+submission.to_csv(SUBMISSION_PATH, index=False)
