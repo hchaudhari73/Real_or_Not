@@ -5,8 +5,12 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score
 import pickle
 
+TRAIN_PATH = "clean_train.csv"
+MODEL_PATH = "models/log_model.pkl"
+VECTORIZOR_PATH = "vectorizors/vectorizor.pkl"
+
 # read data
-df = pd.read_csv("clean_train.csv")
+df = pd.read_csv(TRAIN_PATH)
 
 # training size
 TRAIN_SIZE = int(0.8*len(df))
@@ -39,11 +43,11 @@ score = round(f1_score(y_pred, y_test), 3)
 print(f"f1-score: {score}")
 
 # saving model 
-with open("log_model.pkl", "wb") as pickle_out:
+with open(MODEL_PATH, "wb") as pickle_out:
     pickle.dump(model, pickle_out)
     print("model saved")
 
 #saving vectorizor
-with open("vectorizor.pkl", "wb") as vec_out:
+with open(VECTORIZOR_PATH, "wb") as vec_out:
     pickle.dump(vec, vec_out)
     print("vec saved")
